@@ -1,0 +1,10 @@
+backend/
+├── app/
+│   ├── __init__.py
+│   ├── routes.py            # API endpoints
+│   ├── chatbot.py           # Chat logic and model interaction
+│   ├── utils.py             # Helper functions
+│   └── config.py            # API keys, settings
+├── main.py                  # Entry point (Flask or FastAPI server)
+├── requirements.txt
+└── .env                     # Secrets (OpenAI API key, etc.)

@@ -1,0 +1,8 @@
+pandas: Data manipulation and analysis.
+
+nltk: Text processing (tokenization, stopwords, stemming, lemmatization).
+
+sklearn: Machine learning algorithms, vectorization, and model evaluation.
+
+spacy: Efficient and robust NLP library for advanced preprocessing.
+

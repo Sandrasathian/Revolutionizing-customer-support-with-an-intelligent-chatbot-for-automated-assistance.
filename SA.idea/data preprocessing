@@ -1,0 +1,10 @@
+Data Cleaning
+import pandas as pd
+
+# Load data
+data = pd.read_csv("customer_support_data.csv")
+
+# Clean data
+data['text'] = data['text'].str.lower()  # Convert to lowercase
+data['text'] = data['text'].str.replace(r'[^a-zA-Z\s]', '', regex=True)  # Remove special characters
+data.drop_duplicates(subset='text', inplace=True)  # Remove duplicate rows

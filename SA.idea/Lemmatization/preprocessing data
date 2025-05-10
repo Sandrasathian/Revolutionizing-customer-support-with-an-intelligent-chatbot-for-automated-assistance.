@@ -1,0 +1,2 @@
+# Save preprocessed data
+data.to_csv("preprocessed_customer_support_data.csv", index=False)

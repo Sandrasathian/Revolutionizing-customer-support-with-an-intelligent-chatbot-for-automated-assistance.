@@ -1,0 +1,6 @@
+from nltk.stem import WordNetLemmatizer
+
+lemmatizer = WordNetLemmatizer()
+
+# Lemmatize words
+data['lemmatized_tokens'] = data['filtered_tokens'].apply(lambda x: [lemmatizer.lemmatize(word) for word in x])

@@ -1,0 +1,7 @@
+from nltk.corpus import stopwords
+
+# Load stop words
+stop_words = set(stopwords.words('english'))
+
+# Remove stop words from tokens
+data['filtered_tokens'] = data['tokens'].apply(lambda x: [word for word in x if word not in stop_words])

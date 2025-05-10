@@ -1,0 +1,8 @@
+Key Responsibilities:
+Handle incoming chat messages.
+
+Send messages to the chatbot (e.g., OpenAI API).
+
+Return chatbot responses to the frontend.
+
+Optionally log or store conversations.

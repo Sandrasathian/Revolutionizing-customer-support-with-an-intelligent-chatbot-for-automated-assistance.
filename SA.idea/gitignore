@@ -1,0 +1,86 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+env/
+venv/
+.venv/
+
+# Environment variable files
+.env
+.env.*
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Log files
+*.log
+
+# VSCode settings
+.vscode/
+
+# macOS system files
+.DS_Store
+
+# Model files and embeddings
+*.h5
+*.pt
+*.ckpt
+*.pkl
+*.joblib
+
+# Cache and temporary files
+*.tmp
+*.temp
+.cache/
+*.bak
+
+# Python egg files
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+
+# Unit test / coverage reports
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# PyInstaller
+*.spec
+
+# MyPy
+.mypy_cache/
+
+# Language server files
+.pyre/
+.pytype/
+
+# Notebooks and dataset artifacts
+data/
+datasets/
+*.csv
+*.json
+*.db
+
+# Node (if web UI involved)
+node_modules/
+
+# Streamlit cache
+.streamlit/
+
+# AWS/GCP credentials
+*.pem
+*.key

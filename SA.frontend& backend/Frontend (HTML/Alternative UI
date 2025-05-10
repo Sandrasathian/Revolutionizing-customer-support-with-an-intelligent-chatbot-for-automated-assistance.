@@ -1,0 +1,10 @@
+# streamlit_app.py
+import streamlit as st
+from app.chatbot import get_bot_response
+
+st.title("Customer Support Chatbot")
+
+user_input = st.text_input("You:")
+if user_input:
+    response = get_bot_response(user_input)
+    st.text_area("Bot:", value=response, height=100)

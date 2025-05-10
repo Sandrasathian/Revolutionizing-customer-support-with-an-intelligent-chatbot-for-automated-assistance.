@@ -1,0 +1,7 @@
+from sklearn.ensemble import RandomForestClassifier
+
+# Initialize classifier with class weights
+clf = RandomForestClassifier(class_weight='balanced')
+
+# Train the model
+clf.fit(X_train, y_train)
