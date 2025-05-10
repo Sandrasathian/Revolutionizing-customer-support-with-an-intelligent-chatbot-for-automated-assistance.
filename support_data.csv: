@@ -1,0 +1,7 @@
+id,text,sentiment
+1,"HELLO!!! I need HELP with my order!!! 😡",negative
+2,"Hey, I can't log in to my account - what's going on?",negative
+3,"Thanks for your amazing support!",positive
+4,"Quick response, appreciate that.",positive
+5,"Worst experience ever",negative
+6,"Everything is working great now, thank you!",positive
