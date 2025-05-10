@@ -1,0 +1,56 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from wordcloud import WordCloud
+import nltk
+from nltk.corpus import stopwords
+import re
+
+# Load and inspect data
+df = pd.read_csv("support_data.csv")
+print(df.head())
+print(df.info())
+print(df['sentiment'].value_counts())
+
+# Clean text
+def clean_text(text):
+    text = text.lower()
+    text = re.sub(r'[^a-z\s]', '', text)
+    return text
+
+df['clean_text'] = df['text'].apply(clean_text)
+
+# Message length analysis
+df['text_length'] = df['text'].apply(lambda x: len(x.split()))
+
+plt.figure(figsize=(8,5))
+sns.histplot(df['text_length'], bins=10, kde=True)
+plt.title("Distribution of Message Lengths")
+plt.xlabel("Number of Words")
+plt.ylabel("Frequency")
+plt.show()
+
+# Sentiment distribution
+plt.figure(figsize=(6,4))
+sns.countplot(x='sentiment', data=df, palette='Set2')
+plt.title("Sentiment Distribution")
+plt.xlabel("Sentiment")
+plt.ylabel("Count")
+plt.show()
+
+# Word Cloud
+stop_words = set(stopwords.words('english'))
+
+def get_wordcloud(texts, title):
+    text = " ".join(texts)
+    wordcloud = WordCloud(stopwords=stop_words, background_color="white").generate(text)
+    plt.figure(figsize=(8,6))
+    plt.imshow(wordcloud, interpolation='bilinear')
+    plt.axis("off")
+    plt.title(title)
+    plt.show()
+
+# Word clouds for all, positive and negative
+get_wordcloud(df['clean_text'], "All Messages - Word Cloud")
+get_wordcloud(df[df['sentiment'] == 'positive']['clean_text'], "Positive Messages - Word Cloud")
+get_wordcloud(df[df['sentiment'] == 'negative']['clean_text'], "Negative Messages - Word Cloud")
