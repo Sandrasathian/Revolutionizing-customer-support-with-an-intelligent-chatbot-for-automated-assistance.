@@ -1,0 +1,35 @@
+customer-support-chatbot/
+├── app/                      # Main application logic
+│   ├── __init__.py
+│   ├── chatbot.py            # Core chatbot interaction logic
+│   ├── data_preprocessing.py # Data cleaning & preprocessing functions
+│   ├── model.py              # Model loading/inference logic (OpenAI, etc.)
+│   └── utils.py              # Helper functions
+│
+├── data/                     # Raw and processed datasets
+│   ├── raw/
+│   │   └── support_data.csv
+│   └── processed/
+│       └── clean_data.csv
+│
+├── notebooks/                # Jupyter notebooks for EDA, experiments
+│   └── data_analysis.ipynb
+│
+├── config/                   # Configuration files (e.g., API keys, model settings)
+│   └── config.yaml
+│
+├── static/                   # Assets for web (if applicable)
+│   ├── css/
+│   └── js/
+│
+├── templates/                # HTML templates (for Flask/Streamlit web UI)
+│   └── index.html
+│
+├── tests/                    # Unit tests
+│   └── test_chatbot.py
+│
+├── .env                      # Environment variables (e.g., OpenAI key)
+├── .gitignore
+├── main.py                   # Entry point for CLI or web app
+├── requirements.txt
+└── README.md

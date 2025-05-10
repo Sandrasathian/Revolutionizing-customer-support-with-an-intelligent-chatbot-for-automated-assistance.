@@ -1,0 +1,5 @@
+python main.py
+
+python app/data_preprocessing.py
+
+pytest tests/

@@ -1,0 +1,11 @@
+main.py — Starts the chatbot (CLI or web).
+
+chatbot.py — Core chat logic, using OpenAI or a local model.
+
+data_preprocessing.py — Cleans and tokenizes data.
+
+model.py — Loads or connects to the language model.
+
+config.yaml — Centralized configuration (e.g., model settings, temperature).
+
+tests/ — Automated testing to ensure the chatbot responds correctly.
