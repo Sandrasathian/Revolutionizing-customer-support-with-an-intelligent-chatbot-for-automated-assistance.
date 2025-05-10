@@ -1,0 +1,45 @@
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay, roc_auc_score, roc_curve
+import matplotlib.pyplot as plt
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(df['clean_text'], df['sentiment'], test_size=0.2, random_state=42)
+
+# Vectorization
+vectorizer = TfidfVectorizer(stop_words='english')
+X_train_vec = vectorizer.fit_transform(X_train)
+X_test_vec = vectorizer.transform(X_test)
+
+# Model
+model = LogisticRegression()
+model.fit(X_train_vec, y_train)
+
+# Predictions
+y_pred = model.predict(X_test_vec)
+y_prob = model.predict_proba(X_test_vec)[:, 1]  # for ROC
+
+# Classification report
+print(classification_report(y_test, y_pred))
+
+# Confusion matrix
+cm = confusion_matrix(y_test, y_pred, labels=model.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=model.classes_)
+disp.plot(cmap='Blues')
+plt.title("Confusion Matrix")
+plt.show()
+
+# ROC Curve (only for binary classification)
+if len(model.classes_) == 2:
+    fpr, tpr, _ = roc_curve(y_test.map({'negative': 0, 'positive': 1}), y_prob)
+    auc = roc_auc_score(y_test.map({'negative': 0, 'positive': 1}), y_prob)
+
+    plt.figure(figsize=(6,4))
+    plt.plot(fpr, tpr, label=f'AUC = {auc:.2f}')
+    plt.plot([0, 1], [0, 1], 'k--')
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('ROC Curve')
+    plt.legend()
+    plt.show()
