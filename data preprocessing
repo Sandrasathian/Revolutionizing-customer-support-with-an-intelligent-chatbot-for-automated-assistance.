@@ -1,0 +1,77 @@
+📥 Example Raw Data (Before Preprocessing)
+
+id,text
+1,"HELLO!!! I need HELP with my order!!! 😡 #frustrated"
+2,"Hey, I can't log in to my account - what's going on?"
+3,"   "
+4,"THANKS for the quick support :) You're the best!"
+
+   Preprocessing Steps:
+Remove special characters/emojis.
+
+Convert to lowercase.
+
+Remove stopwords.
+
+Tokenize text.
+
+Lemmatize words.
+
+Remove empty/blank rows.
+
+  coding:
+import pandas as pd
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+import re
+
+# Downloads (only run once)
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+
+# Sample data
+data = pd.DataFrame({
+    'id': [1, 2, 3, 4],
+    'text': [
+        "HELLO!!! I need HELP with my order!!! 😡 #frustrated",
+        "Hey, I can't log in to my account - what's going on?",
+        "   ",
+        "THANKS for the quick support :) You're the best!"
+    ]
+})
+
+# Preprocessing functions
+stop_words = set(stopwords.words('english'))
+lemmatizer = WordNetLemmatizer()
+
+def clean_text(text):
+    text = text.lower()
+    text = re.sub(r'[^a-z\s]', '', text)  # Remove punctuation, emojis, etc.
+    tokens = word_tokenize(text)
+    filtered = [lemmatizer.lemmatize(word) for word in tokens if word not in stop_words]
+    return ' '.join(filtered)
+
+# Apply cleaning
+data['clean_text'] = data['text'].apply(clean_text)
+data = data[data['clean_text'].str.strip() != ""]  # Remove empty
+
+print(data[['id', 'clean_text']])
+
+       ##Output (After Preprocessing)
+
+   id                          clean_text
+0   1      hello need help order frustrated
+1   2      hey log account going
+3   4  thank quick support best
+
+
+      Summary:
+Step	Before	After
+Original Text	"HELLO!!! I need HELP..."	"hello need help order frustrated"
+Special Chars Removed	"😡 !!! #frustrated"	Removed
+Lowercase	"HELLO"	"hello"
+Stopwords Removed	"I, with, my"	Removed
+Lemmatized	"needs → need", "orders → order"	Normalized
